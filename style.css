@@ -1,0 +1,219 @@
+/* Estilos Globais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+
+/* Container principal */
+.container {
+    display: flex;
+    position: relative;
+    width: 100%; /* Garantir que o contêiner ocupe 100% da largura disponível */
+}
+
+/* Container das Cartas */
+.card-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-content: start;
+    overflow: hidden; /* Impedir que as cartas estoure na horizontal */
+    padding: 10px; /* Padding para manter as cartas longe das bordas */
+    flex-grow: 1; /* Permitir que este contêiner cresça */
+}
+
+/* Listagem de cartas */
+.card-list {
+    min-width: 100px; /* Largura da lista */
+    padding: 10px;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-left: 20px; /* Espaçamento entre a lista e as cartas */
+    border-radius: 5px;
+    white-space: nowrap;
+}
+
+.card-list h3 {
+    margin-bottom: 10px;
+}
+
+/* Estilo da lista de cartas */
+#available-cards {
+    list-style-type: none;
+    padding-left: 0; /* Remover padding do lado esquerdo */
+}
+
+.card-item {
+    padding: 10px;
+    cursor: pointer;
+    background: #007bff;
+    color: white;
+    border-radius: 3px;
+    margin: 5px 0;
+    text-align: center;
+    transition: background 0.3s;
+}
+
+/* Estilos das Cartas */
+.card {
+    width: 280px;
+    height: 380px;
+    perspective: 1800px;
+    cursor: pointer;
+    position: relative;
+}
+
+.card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.8s;
+}
+
+.card.is-flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Classes de cor para as frentes das cartas */
+.blue {
+    background-image: url('cards/cardBack_blue5.png');
+}
+
+.green {
+    background-image: url('cards/cardBack_green5.png');
+}
+
+.red {
+    background-image: url('cards/cardBack_red5.png');
+}
+
+/* Verso com card[suit][random number].png */
+.card-back {
+    transform: rotateY(180deg);
+    background-size: cover;
+    background-position: center;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .card {
+        width: 120px;
+        height: 160px;
+    }
+
+    .card-list {
+        width: 150px; /* Diminuir a largura da lista em telas menores */
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .card {
+        width: 100px;
+        height: 140px;
+    }
+
+    /* Lista de cartas ajustada */
+    .card-list {
+        width: 100%; /* A lista ocupa a largura total em telas pequenas */
+    }
+}
+
+@keyframes slide-in {
+    from {
+        transform: translateY(-20px); /* Começa acima */
+        opacity: 0; /* Começa invisível */
+    }
+    to {
+        transform: translateY(0); /* Move para a posição original */
+        opacity: 1; /* Torna visível */
+    }
+}
+
+@keyframes slide-out {
+    from {
+        transform: translateY(0); /* Começa normal */
+        opacity: 1; /* Começa visível */
+    }
+    to {
+        transform: translateY(-20px); /* Move para cima */
+        opacity: 0; /* Torna invisível */
+    }
+}
+
+.card-item.active {
+    border: 3px #5626a5 solid;
+    color: white;
+    font-weight: bold;
+}
+
+.a1{
+    background: #6467bb;
+    border: 3px #6467bb solid;
+}
+
+.a2{
+    background: #839de8;
+    border: 3px #839de8 solid;
+}
+
+.a3{
+    background: #adb9ee;
+    border: 3px #adb9ee solid;
+}
+
+.a4{
+    background: #8bb5d3;
+    border: 3px #8bb5d3 solid;
+}
+
+.a5{
+    background: #8cd2cc;
+    border: 3px #8cd2cc solid;
+}
+
+.a1:hover{
+    background: #5457ab;
+}
+
+.a2:hover{
+    background: #738dd8;
+}
+
+.a3:hover{
+    background: #9da9de;
+}
+
+.a4:hover{
+    background: #7ba5c3;
+}
+
+.a5:hover{
+    background: #7cc2bc;
+}
