@@ -66,8 +66,8 @@ body {
 
 /* Estilos das Cartas */
 .card {
-    width: 280px;
-    height: 380px;
+    width: 378px;
+    height: 513px;
     perspective: 1800px;
     cursor: pointer;
     position: relative;
