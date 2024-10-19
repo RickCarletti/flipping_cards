@@ -1,5 +1,6 @@
 // Array para armazenar as cartas ativas
 const activeCards = [];
+const listAvailableImages = ['11']
 
 // Função para gerar uma cor aleatória para a frente da carta
 function getRandomColor() {
@@ -9,8 +10,6 @@ function getRandomColor() {
 
 // Inicializa a lista de cartas disponíveis
 function initializeCardList() {
-    const suits = ['Clubs', 'Diamonds', 'Hearts', 'Spades'];
-    const values = ['A', 'J', 'Q', 'K', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
     const colors = ['a1', 'a2', 'a3', 'a4', 'a5']
 
     const conexao_aceitacao = ['Abandono/Instabilidade', 'Desconfiança/Abuso', 'Privação Emocional', 'Defeito/Vergoña', 'Isolamento Social'];
@@ -19,21 +18,17 @@ function initializeCardList() {
     const orientacao_controle = ['Subjugação', 'Auto Sacrifício', 'Busca de Aprovação']
     const supervigilancia_inibicao = ['Inibição Emocional', 'Padrões Inflexiveis', 'Hipercriticidade', 'Carater Punitivo']
 
-    debugger;
-
-    cria_lista_cartas(conexao_aceitacao, colors[0], values, suits);
-    cria_lista_cartas(autonomia_desempenho, colors[1], values, suits);
-    cria_lista_cartas(limitacao, colors[2], values, suits);
-    cria_lista_cartas(orientacao_controle, colors[3], values, suits);
-    cria_lista_cartas(supervigilancia_inibicao, colors[4], values, suits);
+    cria_lista_cartas(conexao_aceitacao, colors[0]);
+    cria_lista_cartas(autonomia_desempenho, colors[1]);
+    cria_lista_cartas(limitacao, colors[2]);
+    cria_lista_cartas(orientacao_controle, colors[3]);
+    cria_lista_cartas(supervigilancia_inibicao, colors[4]);
 }
 
 const availableCards = document.getElementById('available-cards');
-var i = 0;
-var j = 0;
 var l = 1;
 
-function cria_lista_cartas(lista_cartas, color, values, suits) {
+function cria_lista_cartas(lista_cartas, color) {
     var k = 1;
 
     lista_cartas.forEach(umEsquema => {
@@ -41,23 +36,22 @@ function cria_lista_cartas(lista_cartas, color, values, suits) {
         listItem.classList.add('card-item');
         listItem.classList.add(color);
 
-        var value = values[i % 13];
-        var suit = suits[j % 4];
         listItem.textContent = `${l}.${k}`;
-        j++;
-        i++;
-        k++;
-        
         listItem.title = `${umEsquema}`
-        listItem.onclick = () => toggleCard(suit, value, listItem); // Passar listItem para a função
+        listItem.setAttribute('lista', l)
+        listItem.setAttribute('numero', k)
+        listItem.onclick = () => toggleCard(listItem); // Passar listItem para a função
         availableCards.appendChild(listItem);
+        k++;
     });
     l++;
 }
 
 // Função para adicionar ou remover uma nova carta
-function toggleCard(suit, value, listItem) {
-    const cardIdentifier = `${suit}-${value}`; // Identificador único para cada carta
+function toggleCard(listItem) {
+    const lista = listItem.getAttribute('lista')
+    const numero = listItem.getAttribute('numero')
+    const cardIdentifier = `${lista}-${numero}`; // Identificador único para cada carta
 
     if (activeCards.includes(cardIdentifier)) {
         // Se a carta já estiver na lista, removê-la
@@ -65,14 +59,14 @@ function toggleCard(suit, value, listItem) {
         listItem.classList.remove('active'); // Remove a classe active do item da lista
     } else {
         // Caso contrário, adicionar a carta
-        addCard(suit, value);
+        addCard(lista, numero);
         activeCards.push(cardIdentifier); // Adicionar o identificador à lista
         listItem.classList.add('active'); // Adiciona a classe active ao item da lista
     }
 }
 
 // Função para adicionar uma nova carta
-function addCard(suit, value) {
+async function addCard(lista, numero) {
     const container = document.getElementById('card-container');
 
     // Criar os elementos da carta
@@ -84,14 +78,20 @@ function addCard(suit, value) {
     cardInner.classList.add('card-inner');
 
     const cardFront = document.createElement('div');
-    const randomColor = getRandomColor();
-    cardFront.classList.add('card-front', randomColor);
+    cardFront.classList.add('card-front');
+
+    if(listAvailableImages.includes(`${lista}${numero}`)){
+        // Gerar a frente de carta
+        cardFront.style.backgroundImage = `url('cards/${lista}${numero}_frente.png')`;
+    }
 
     const cardBack = document.createElement('div');
     cardBack.classList.add('card-back');
 
-    // Gerar um verso de carta com o naipe e valor selecionados
-    cardBack.style.backgroundImage = `url('cards/card${suit}${value}.png')`;
+    // Gerar o verso de carta
+    if(listAvailableImages.includes(`${lista}${numero}`)){
+        cardBack.style.backgroundImage = `url('cards/${lista}${numero}_verso.png')`;
+    }
 
     // Montar a carta
     cardInner.appendChild(cardFront);
@@ -99,7 +99,7 @@ function addCard(suit, value) {
     card.appendChild(cardInner);
 
     // Define identificador
-    card.setAttribute('data-identifier', `${suit}-${value}`); // Adiciona identificador à carta
+    card.setAttribute('data-identifier', `${lista}-${numero}`); // Adiciona identificador à carta
 
     // Adicionar ao container
     container.appendChild(card);

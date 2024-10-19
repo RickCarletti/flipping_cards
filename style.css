@@ -95,19 +95,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-/* Classes de cor para as frentes das cartas */
-.blue {
-    background-image: url('cards/cardBack_blue5.png');
-}
-
-.green {
-    background-image: url('cards/cardBack_green5.png');
-}
-
-.red {
-    background-image: url('cards/cardBack_red5.png');
+    background-image: url('cards/null_frente.png');
 }
 
 /* Verso com card[suit][random number].png */
@@ -115,6 +103,7 @@ body {
     transform: rotateY(180deg);
     background-size: cover;
     background-position: center;
+    background-image: url('cards/null_verso.png');
 }
 
 /* Responsividade */
