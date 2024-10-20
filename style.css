@@ -178,8 +178,8 @@ body {
 }
 
 .a4{
-    background: #8bb5d3;
-    border: 3px #8bb5d3 solid;
+    background: #CFB58F;
+    border: 3px #CFB58F solid;
 }
 
 .a5{
@@ -200,9 +200,18 @@ body {
 }
 
 .a4:hover{
-    background: #7ba5c3;
+    background: #bFa57F;
 }
 
 .a5:hover{
     background: #7cc2bc;
+}
+
+.remove_all{
+    background: #BD8585;
+    border: 3px #BD8585 solid;
+}
+
+.remove_all:hover{
+    background: #aD7575;
 }

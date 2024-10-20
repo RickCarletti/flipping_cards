@@ -1,6 +1,6 @@
 // Array para armazenar as cartas ativas
 const activeCards = [];
-const listAvailableImages = ['11']
+const listAvailableImages = ['1.1', '1.2', '1.3', '1.4', '1.5', '2.1', '2.2', '2.3', '2.4', '3.1', '3.2', '4.1', '4.2', '4.3', '5.1', '5.2', '5.3', '5.4']
 
 // Função para gerar uma cor aleatória para a frente da carta
 function getRandomColor() {
@@ -12,12 +12,13 @@ function getRandomColor() {
 function initializeCardList() {
     const colors = ['a1', 'a2', 'a3', 'a4', 'a5']
 
-    const conexao_aceitacao = ['Abandono/Instabilidade', 'Desconfiança/Abuso', 'Privação Emocional', 'Defeito/Vergoña', 'Isolamento Social'];
-    const autonomia_desempenho = ['Fracasso', 'Dependência/Incompetência', 'Vulnerabilidade à Dano ou Doença', 'Emaranhamento'];
-    const limitacao = ['Autocontrole e Autodiciplina Insuficiente', 'Grandiosidade'];
-    const orientacao_controle = ['Subjugação', 'Auto Sacrifício', 'Busca de Aprovação']
-    const supervigilancia_inibicao = ['Inibição Emocional', 'Padrões Inflexiveis', 'Hipercriticidade', 'Carater Punitivo']
+    const conexao_aceitacao = ['Abandono', 'Desconfiança/Abuso', 'Privação Emocional', 'Defectividade', 'Isolamento Social'];
+    const autonomia_desempenho = ['Incompetência e Dependência', 'Vulnerabilidade ao Perigo ou Doença', 'Emaranhamento', 'Fracasso'];
+    const limitacao = ['Grandiosidade e Arrogo', 'Autocontrole e Autodisciplina Insuficientes'];
+    const orientacao_controle = ['Subjugação', 'Autossacrifício', 'Busca de Aprovação'];
+    const supervigilancia_inibicao = ['Inibição Emocional', 'Padrões Inflexíveis/Criticismo', 'Negativismo/Pessimismo', 'Postura Punitiva'];
 
+    cria_botao_remove_todos();
     cria_lista_cartas(conexao_aceitacao, colors[0]);
     cria_lista_cartas(autonomia_desempenho, colors[1]);
     cria_lista_cartas(limitacao, colors[2]);
@@ -45,6 +46,26 @@ function cria_lista_cartas(lista_cartas, color) {
         k++;
     });
     l++;
+}
+
+function cria_botao_remove_todos() {
+    const listItem = document.createElement('li');
+    listItem.classList.add('card-item');
+    listItem.classList.add('remove_all');
+
+    listItem.textContent = `X`;
+    listItem.title = `Remove Todas as Cartas`
+    listItem.onclick = () => removeAll(); // Passar listItem para a função
+    availableCards.appendChild(listItem);
+}
+
+function removeAll() {
+    var listItensActives = document.getElementsByClassName("active");
+
+    while(listItensActives.length > 0){
+        toggleCard(listItensActives[0]);
+    }
+
 }
 
 // Função para adicionar ou remover uma nova carta
@@ -80,17 +101,17 @@ async function addCard(lista, numero) {
     const cardFront = document.createElement('div');
     cardFront.classList.add('card-front');
 
-    if(listAvailableImages.includes(`${lista}${numero}`)){
+    if (listAvailableImages.includes(`${lista}.${numero}`)) {
         // Gerar a frente de carta
-        cardFront.style.backgroundImage = `url('cards/${lista}${numero}_frente.png')`;
+        cardFront.style.backgroundImage = `url('cards/${lista}.${numero}_frente.png')`;
     }
 
     const cardBack = document.createElement('div');
     cardBack.classList.add('card-back');
 
     // Gerar o verso de carta
-    if(listAvailableImages.includes(`${lista}${numero}`)){
-        cardBack.style.backgroundImage = `url('cards/${lista}${numero}_verso.png')`;
+    if (listAvailableImages.includes(`${lista}.${numero}`)) {
+        cardBack.style.backgroundImage = `url('cards/${lista}.${numero}_verso.png')`;
     }
 
     // Montar a carta
