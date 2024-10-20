@@ -62,7 +62,7 @@ function cria_botao_remove_todos() {
 function removeAll() {
     var listItensActives = document.getElementsByClassName("active");
 
-    while(listItensActives.length > 0){
+    while (listItensActives.length > 0) {
         toggleCard(listItensActives[0]);
     }
 
@@ -100,14 +100,16 @@ async function addCard(lista, numero) {
 
     const cardFront = document.createElement('div');
     cardFront.classList.add('card-front');
+    cardFront.classList.add(`card_a${lista}`);
 
+    // Gerar a frente de carta
     if (listAvailableImages.includes(`${lista}.${numero}`)) {
-        // Gerar a frente de carta
         cardFront.style.backgroundImage = `url('cards/${lista}.${numero}_frente.png')`;
     }
 
     const cardBack = document.createElement('div');
     cardBack.classList.add('card-back');
+    cardBack.classList.add(`card_a${lista}`);
 
     // Gerar o verso de carta
     if (listAvailableImages.includes(`${lista}.${numero}`)) {

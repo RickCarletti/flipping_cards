@@ -95,7 +95,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url('cards/null_frente.png');
 }
 
 /* Verso com card[suit][random number].png */
@@ -103,7 +102,6 @@ body {
     transform: rotateY(180deg);
     background-size: cover;
     background-position: center;
-    background-image: url('cards/null_verso.png');
 }
 
 /* Responsividade */
@@ -160,6 +158,26 @@ body {
     border: 3px #5626a5 solid;
     color: white;
     font-weight: bold;
+}
+
+.card_a1{
+    background-color: #6467bb;
+}
+
+.card_a2{
+    background-color: #839de8;
+}
+
+.card_a3{
+    background-color: #adb9ee;
+}
+
+.card_a4{
+    background-color: #CFB58F;
+}
+
+.card_a5{
+    background-color: #8cd2cc;
 }
 
 .a1{
