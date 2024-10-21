@@ -165,11 +165,11 @@ body {
 }
 
 .card_a2{
-    background-color: #839de8;
+    background-color: #6C88E9;
 }
 
 .card_a3{
-    background-color: #adb9ee;
+    background-color: #A3A6B6;
 }
 
 .card_a4{
@@ -177,7 +177,7 @@ body {
 }
 
 .card_a5{
-    background-color: #8cd2cc;
+    background-color: #74A4A0;
 }
 
 .a1{
@@ -186,13 +186,13 @@ body {
 }
 
 .a2{
-    background: #839de8;
-    border: 3px #839de8 solid;
+    background: #6C88E9;
+    border: 3px #6C88E9 solid;
 }
 
 .a3{
-    background: #adb9ee;
-    border: 3px #adb9ee solid;
+    background: #A3A6B6;
+    border: 3px #A3A6B6 solid;
 }
 
 .a4{
@@ -201,8 +201,8 @@ body {
 }
 
 .a5{
-    background: #8cd2cc;
-    border: 3px #8cd2cc solid;
+    background: #74A4A0;
+    border: 3px #74A4A0 solid;
 }
 
 .a1:hover{
@@ -210,11 +210,11 @@ body {
 }
 
 .a2:hover{
-    background: #738dd8;
+    background: #5C78D9;
 }
 
 .a3:hover{
-    background: #9da9de;
+    background: #9396A6;
 }
 
 .a4:hover{
@@ -222,7 +222,7 @@ body {
 }
 
 .a5:hover{
-    background: #7cc2bc;
+    background: #649490;
 }
 
 .remove_all{
